@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0a0b0b">
+<title>Pague com Pix · China som</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0b0b; --card:#0e100f; --field:#080909; --line:rgba(255,255,255,.08);
+  --text:#f2f4f3; --muted:#8c9490; --green:#34d98f; --green-d:#0b1f17;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;background:radial-gradient(120% 60% at 50% 0%,#101312 0%,var(--bg) 60%);color:var(--text);
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:460px;margin:0 auto;padding:44px 20px 28px;display:flex;flex-direction:column;align-items:center}
+.logo{width:76px;height:76px;border-radius:22px;background:var(--green-d);border:1px solid rgba(52,217,143,.22);
+  display:grid;place-items:center;box-shadow:0 0 40px rgba(52,217,143,.08)}
+.eyebrow{margin:26px 0 0;font-size:12px;letter-spacing:.28em;color:var(--muted);text-transform:uppercase}
+.name{margin:10px 0 0;font-size:25px;font-weight:500;letter-spacing:-.01em}
+h1{margin:34px 0 34px;font-family:'Instrument Serif',Georgia,'Times New Roman',serif;font-weight:400;font-size:54px;line-height:1;letter-spacing:-.02em;text-align:center}
+h1 em{color:var(--green);font-style:italic}
+.card{width:100%;background:var(--card);border:1px solid var(--line);border-radius:26px;padding:22px 22px 24px;margin-bottom:20px}
+.row{display:flex;justify-content:space-between;align-items:center}
+.label{font-size:12px;letter-spacing:.24em;color:var(--muted);text-transform:uppercase}
+.type{font-size:14px;color:var(--muted)}
+.key{margin:20px 0 14px;padding:17px 20px;background:var(--field);border:1px solid var(--line);border-radius:18px;
+  font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:17px;letter-spacing:.04em;user-select:all;-webkit-user-select:all;word-break:break-all}
+.btn{width:100%;height:60px;border:0;border-radius:18px;background:var(--green);color:#04130c;font:600 17px 'Inter',system-ui,sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:10px;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.985)}
+.btn.ok{background:#8cf0c2}
+.lead{margin:18px 0 20px;font-size:15.5px;line-height:1.55;color:#dfe5e2}
+ol{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+li{display:grid;grid-template-columns:30px 1fr;gap:6px;font-size:14.5px;line-height:1.5;color:#b9c1bd}
+li b{font-family:'JetBrains Mono',ui-monospace,Menlo,monospace;font-weight:500;font-size:14px;color:var(--green);padding-top:1px}
+.note{margin:22px 0 0;padding-top:18px;border-top:1px solid var(--line);font-size:12.5px;line-height:1.6;color:var(--muted)}
+.note strong{color:#cfd6d2;font-weight:600}
+footer{margin-top:14px;font-size:12px;letter-spacing:.06em;color:#59605c}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);opacity:0;pointer-events:none;
+  background:#e9fff4;color:#04130c;font-size:14px;font-weight:600;padding:12px 18px;border-radius:14px;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (max-width:360px){h1{font-size:46px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="logo" aria-hidden="true">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#34d98f" stroke-width="2.4" stroke-linejoin="round">
+      <rect x="12" y="2.5" width="9.5" height="9.5" rx="1.6" transform="rotate(45 16.75 7.25)"/>
+      <rect x="12" y="21.5" width="9.5" height="9.5" rx="1.6" transform="rotate(45 16.75 26.25)"/>
+      <rect x="2.5" y="12" width="9.5" height="9.5" rx="1.6" transform="rotate(45 7.25 16.75)"/>
+      <rect x="21.5" y="12" width="9.5" height="9.5" rx="1.6" transform="rotate(45 26.25 16.75)"/>
+    </svg>
+  </div>
+  <p class="eyebrow">Pagamento para</p>
+  <p class="name">China som</p>
+  <h1>Pague com <em>Pix</em></h1>
+
+  <section class="card">
+    <div class="row"><span class="label">Chave Pix</span><span class="type">Telefone</span></div>
+    <div class="key" id="key">98981384182</div>
+    <button class="btn" id="copy" type="button">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H15"/></svg>
+      <span id="copyTxt">Copiar chave Pix</span>
+    </button>
+  </section>
+
+  <section class="card">
+    <div class="label">Como pagar</div>
+    <p class="lead">Siga os passos abaixo para realizar seu pagamento via Pix.</p>
+    <ol>
+      <li><b>01</b><span>Abra o aplicativo do seu banco.</span></li>
+      <li><b>02</b><span>Acesse a área Pix do seu banco.</span></li>
+      <li><b>03</b><span>Com o Pix aberto no seu banco, aproxime seu smartphone da plaquinha NFC.</span></li>
+      <li><b>04</b><span>A página de pagamento será aberta. Copie a chave Pix utilizando o botão abaixo.</span></li>
+      <li><b>05</b><span>Volte ao aplicativo do seu banco e escolha a opção Pix por chave.</span></li>
+      <li><b>06</b><span>Cole a chave Pix copiada, informe o valor e confirme os dados do destinatário antes de realizar o pagamento.</span></li>
+    </ol>
+    <p class="note">Esta é uma <strong>chave Pix</strong>, não um código “Pix Copia e Cola”. Utilize a opção “Pix por chave” no app do seu banco. Nenhum pagamento é realizado por esta página.</p>
+  </section>
+
+  <footer>VOLKSAAS · Pix NFC</footer>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite">Chave Pix copiada!</div>
+
+<script>
+(function(){
+  var KEY = "98981384182";
+  var btn = document.getElementById("copy"), txt = document.getElementById("copyTxt");
+  var toast = document.getElementById("toast"), box = document.getElementById("key"), timer;
+
+  function legacyCopy(){
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = KEY; ta.setAttribute("readonly","");
+      ta.style.cssText = "position:fixed;top:0;left:0;opacity:0;font-size:16px";
+      document.body.appendChild(ta);
+      ta.focus(); ta.select(); ta.setSelectionRange(0, KEY.length);
+      var ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+      return ok;
+    }catch(e){ return false; }
+  }
+  function selectKey(){
+    try{
+      var r = document.createRange(); r.selectNodeContents(box);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }catch(e){}
+  }
+  function feedback(ok){
+    clearTimeout(timer);
+    if(ok){ txt.textContent = "Chave Pix copiada!"; btn.classList.add("ok"); toast.textContent = "Chave Pix copiada!"; }
+    else { selectKey(); txt.textContent = "Toque e segure para copiar"; toast.textContent = "Selecionamos a chave: use Copiar no menu"; }
+    toast.classList.add("show");
+    timer = setTimeout(function(){
+      txt.textContent = "Copiar chave Pix"; btn.classList.remove("ok"); toast.classList.remove("show");
+    }, 2600);
+  }
+  btn.addEventListener("click", function(){
+    if(navigator.clipboard && window.isSecureContext){
+      navigator.clipboard.writeText(KEY).then(function(){ feedback(true); }, function(){ feedback(legacyCopy()); });
+    } else { feedback(legacyCopy()); }
+  });
+})();
+</script>
+</body>
+</html>
